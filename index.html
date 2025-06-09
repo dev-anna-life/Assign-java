@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladies Wears Collection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="top-bar">
+        <span class="site-logo"><i class="fas fa-shirt"></i>LadiesWear Collection</span>
+        <input type="text" id="searchBox" placeholder="Search for dresses...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+</div>
+<!-- 
+    <h1>Ladies Wear Collection
+         <i class="fas fa-shirt h1-icon"></i>
+    </h1> -->
+    <div class="store-container" id="store"></div>
+
+     <script>
+    fetch('script.json')
+    .then(response => response.json())
+    .then(data => {
+        const storeContainer = document.getElementById('store');
+        data.forEach(item => { 
+            storeContainer.innerHTML += `
+                <div class="item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>Price: ${item.price}</p>
+                    <button>Add to Cart</button>
+                </div>
+            `;
+        });
+    })
+    .catch(error => console.error('Error loading JSON:', error));
+</script> 
+
+<footer class="site-footer">
+    &copy; 2025 Ladies Wear Collection. Designed by [DevAnna].
+</footer>
+</body>
+</html>

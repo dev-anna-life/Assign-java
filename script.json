@@ -1,0 +1,147 @@
+[
+    { 
+         "id":1,
+         "name": "Summer Dress", 
+         "price": "$25",
+         "image": "images/summer1.jpg"
+    },
+    {
+            "id":2, 
+            "name": "Elegant Black Gown",
+            "price": "$45",
+            "image": "images/black2.jpg"
+    },
+    {
+            "id":3, 
+            "name": "Blue Jeans Jacket",
+            "price": "$35",
+            "image": "images/black3.jpg"
+    },
+    {
+            "id":4, 
+            "name": "Casual T-shirt",
+            "price": "$15",
+            "image": "images/t-shirts4.jpg"
+    },
+    {
+            "id":5, 
+            "name": "High Waist Skirt",
+            "price": "$20",
+            "image": "images/skirt5.jpg"
+    },
+    {
+            "id":6,
+            "name": "Red Evening Dress",
+            "price": "$50",
+            "image": "images/red6.jpg"
+    },
+    {
+            "id":7,
+            "name": "Denim Shorts",
+            "price": "$18",
+            "image": "images/short7.jpg"
+    },
+    {
+            "id":8,
+            "name": "Silk Blouse",
+            "price": "$28",
+            "image": "images/silk8.jpg"
+    },
+    {
+            "id":9,
+            "name": "Leather Jacket",
+            "price": "$60",
+            "image": "images/jacket9.jpg"
+    },
+    {
+            "id":10,
+            "name": "Crop Top",
+            "price": "$12",
+            "image": "images/crop10.jpg"
+    },
+    {
+            "id":11,
+            "name": "Body Con Dress",
+            "price": "$32",
+            "image": "images/bodycon11.jpg"
+    },
+    {
+            "id":12,
+            "name": "Polka Dot Skirt",
+            "price": "$22",
+            "image": "images/dot12.jpg"
+    },
+    {
+            "id":13,
+            "name": "Cardigan Sweater",
+            "price": "$30",
+            "image": "images/sweater13.jpg"
+    },
+    {
+            "id":14,
+            "name": "Tank Top",
+            "price": "$10",
+            "image": "images/tanktop14.jpg"
+    },
+    {
+            "id":15,
+            "name": "Maxi Gown",
+            "price": "$40",
+            "image": "images/maxigown15.jpg"
+    },
+    {
+            "id":16,
+            "name": "Party Dress",
+            "price": "$55",
+            "image": "images/partydress16.jpg"
+    },
+    {
+            "id":17,
+            "name": "Work Blazer",
+            "price": "$38",
+            "image": "images/blazer17.jpg"
+    },
+    {
+            "id":18,
+            "name": "Winter Coat",
+            "price": "$70",
+            "image": "images/coats18.jpg"
+    },
+    {
+            "id":19,
+            "name": "Ripped",
+            "price": "$27",
+            "image": "images/ripped19.jpg"
+    },
+    {
+            "id":20,
+            "name": "Vintage Dress",
+            "price": "$33",
+            "image": "images/vintage20.jpg"
+    },
+    {
+            "id":21,
+            "name": "Cocktail Dress",
+            "price": "$29",
+            "image": "images/cock21.jpg"
+    },
+    {
+            "id":22,
+            "name": "French Dress",
+            "price": "$48",
+            "image": "images/fren22.jpg"
+    },
+    {
+            "id":23,
+            "name": "Plaid Shirt",
+            "price": "$16",
+            "image": "images/sho23.jpg"
+    },
+    {
+            "id":24,
+            "name": "Bikini Dress",
+            "price": "$24",
+            "image": "images/bik24.jpg"
+    }
+
+]
