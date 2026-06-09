@@ -7,7 +7,7 @@ const COUPONS = { GIFTHAVEN10: 10, SAVE20: 20, WELCOME5: 5 };
 export default function Checkout() {
   const { items, cartTotal, clearCart } = useCart();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: '', email: '', address: '' });
+  const [form, setForm] = useState({ name: '', email: '', address: '', giftMessage: '' });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
@@ -114,6 +114,13 @@ export default function Checkout() {
                 <label className="block text-sm font-medium text-gray-600 mb-1.5">Shipping Address</label>
                 <textarea name="address" value={form.address} onChange={handleChange} rows={3} placeholder="123 Main St, City, State, ZIP" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-gray-400 transition-all bg-gray-50/30 resize-none" />
                 {errors.address && <p className="text-rose-500 text-xs mt-1.5"><i className="fas fa-exclamation-circle mr-1"></i>{errors.address}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-600 mb-1.5 flex items-center gap-1.5">
+                  <i className="fas fa-gift text-gray-400 text-xs"></i> Gift Message <span className="text-gray-400 font-normal">(optional)</span>
+                </label>
+                <textarea name="giftMessage" value={form.giftMessage} onChange={handleChange} rows={2} placeholder="Write a personal message for the recipient..." maxLength={500} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-gray-400 transition-all bg-gray-50/30 resize-none" />
+                <p className="text-[10px] text-gray-400 mt-1 text-right">{form.giftMessage.length}/500</p>
               </div>
               {/* Coupon */}
               <div className="border-t border-gray-100 pt-4">

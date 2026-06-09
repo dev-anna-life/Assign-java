@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../context/CartContext.jsx';
 import { useWishlist } from '../context/WishlistContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
+import StarRating from './StarRating.jsx';
 
 export default function ProductCard({ product, index = 0, onViewDetail }) {
   const { addToCart } = useCart();
@@ -106,6 +107,7 @@ export default function ProductCard({ product, index = 0, onViewDetail }) {
       </div>
       <div className="p-4 flex flex-col flex-1">
         <h3 className="text-sm font-semibold text-gray-800 mb-1 leading-snug line-clamp-2 group-hover:text-gray-900 transition-colors">{product.name}</h3>
+        <StarRating rating={product.rating} showCount reviewCount={product.reviewCount} />
         <div className="flex items-baseline gap-2 mb-2 mt-auto">
           <p className="text-lg font-bold text-gray-700">{product.priceFormatted}</p>
           {onSale && (

@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout.jsx';
 import InfoPage from './pages/InfoPage.jsx';
 import WishlistPage from './pages/WishlistPage.jsx';
 import Admin from './pages/Admin.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -27,6 +28,7 @@ function App() {
               <Route path="/contact" element={<InfoPage pageKey="contact" />} />
               <Route path="/shipping" element={<InfoPage pageKey="shipping" />} />
               <Route path="/returns" element={<InfoPage pageKey="returns" />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           <CartSidebar open={cartOpen} onClose={() => setCartOpen(false)} />

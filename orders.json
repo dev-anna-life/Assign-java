@@ -1,0 +1,29 @@
+[
+  {
+    "id": "2fa58a47-f2bf-47ab-88b2-34eb755e5504",
+    "items": [
+      {
+        "id": 10,
+        "name": "Ultrabook Laptop",
+        "price": 899,
+        "category": "Electronics",
+        "featured": true,
+        "originalPrice": 1099,
+        "image": "https://images.pexels.com/photos/4973899/pexels-photo-4973899.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
+        "stock": 3,
+        "priceFormatted": "$899",
+        "originalPriceFormatted": "$1099",
+        "qty": 1
+      }
+    ],
+    "customer": {
+      "name": "Annastesia Amarachi Ugwuanyi",
+      "email": "annastesiaugwuanyi@gmail.com",
+      "address": "5 Amugoro Ezema Nru Nsukka"
+    },
+    "coupon": null,
+    "total": 899,
+    "subtotal": 899,
+    "createdAt": "2026-06-09T15:05:01.750Z"
+  }
+]

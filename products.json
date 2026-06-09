@@ -7,7 +7,9 @@
     "featured": true,
     "originalPrice": 69.99,
     "image": "https://images.pexels.com/photos/593157/pexels-photo-593157.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 6
+    "stock": 6,
+    "rating": 4.5,
+    "reviewCount": 127
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@
     "featured": false,
     "image": "https://images.pexels.com/photos/29805437/pexels-photo-29805437.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
     "stock": 13,
-    "badge": "New"
+    "badge": "New",
+    "rating": 4.8,
+    "reviewCount": 89
   },
   {
     "id": 3,
@@ -27,7 +31,9 @@
     "featured": true,
     "originalPrice": 199,
     "image": "https://images.pexels.com/photos/3766113/pexels-photo-3766113.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 5
+    "stock": 5,
+    "rating": 4.2,
+    "reviewCount": 243
   },
   {
     "id": 4,
@@ -37,7 +43,9 @@
     "featured": false,
     "image": "https://images.pexels.com/photos/7054397/pexels-photo-7054397.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
     "stock": 17,
-    "badge": "Best Seller"
+    "badge": "Best Seller",
+    "rating": 4.6,
+    "reviewCount": 412
   },
   {
     "id": 5,
@@ -47,7 +55,9 @@
     "featured": true,
     "originalPrice": 399,
     "image": "https://images.pexels.com/photos/12194325/pexels-photo-12194325.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 7
+    "stock": 7,
+    "rating": 4.9,
+    "reviewCount": 56
   },
   {
     "id": 6,
@@ -56,7 +66,9 @@
     "category": "Jewelry",
     "featured": false,
     "image": "https://images.pexels.com/photos/7314466/pexels-photo-7314466.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 20
+    "stock": 20,
+    "rating": 4.3,
+    "reviewCount": 189
   },
   {
     "id": 7,
@@ -65,7 +77,9 @@
     "category": "Jewelry",
     "featured": false,
     "image": "https://images.pexels.com/photos/2849743/pexels-photo-2849743.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 19
+    "stock": 19,
+    "rating": 4.7,
+    "reviewCount": 78
   },
   {
     "id": 8,
@@ -75,7 +89,9 @@
     "featured": false,
     "image": "https://images.pexels.com/photos/1666313/pexels-photo-1666313.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
     "stock": 18,
-    "badge": "Best Seller"
+    "badge": "Best Seller",
+    "rating": 4.4,
+    "reviewCount": 301
   },
   {
     "id": 9,
@@ -85,7 +101,9 @@
     "featured": false,
     "originalPrice": 84.99,
     "image": "https://images.pexels.com/photos/5882557/pexels-photo-5882557.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 21
+    "stock": 21,
+    "rating": 4.1,
+    "reviewCount": 94
   },
   {
     "id": 10,
@@ -95,7 +113,9 @@
     "featured": true,
     "originalPrice": 1099,
     "image": "https://images.pexels.com/photos/4973899/pexels-photo-4973899.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 3
+    "stock": 3,
+    "rating": 4.8,
+    "reviewCount": 167
   },
   {
     "id": 11,
@@ -106,7 +126,9 @@
     "originalPrice": 499,
     "image": "https://images.pexels.com/photos/15372903/pexels-photo-15372903.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
     "stock": 22,
-    "badge": "New"
+    "badge": "New",
+    "rating": 4.5,
+    "reviewCount": 88
   },
   {
     "id": 12,
@@ -116,7 +138,9 @@
     "featured": true,
     "originalPrice": 899,
     "image": "https://images.pexels.com/photos/30461908/pexels-photo-30461908.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 4
+    "stock": 4,
+    "rating": 4.9,
+    "reviewCount": 203
   },
   {
     "id": 13,
@@ -125,7 +149,9 @@
     "category": "Electronics",
     "featured": false,
     "image": "https://images.pexels.com/photos/2335049/pexels-photo-2335049.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 24
+    "stock": 24,
+    "rating": 4.3,
+    "reviewCount": 145
   },
   {
     "id": 14,
@@ -135,7 +161,9 @@
     "featured": true,
     "originalPrice": 129.99,
     "image": "https://images.pexels.com/photos/8400220/pexels-photo-8400220.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 7
+    "stock": 7,
+    "rating": 4.6,
+    "reviewCount": 62
   },
   {
     "id": 15,
@@ -144,7 +172,9 @@
     "category": "Fashion",
     "featured": false,
     "image": "https://images.pexels.com/photos/1865557/pexels-photo-1865557.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 8
+    "stock": 8,
+    "rating": 4.2,
+    "reviewCount": 198
   },
   {
     "id": 16,
@@ -154,7 +184,9 @@
     "featured": false,
     "originalPrice": 99.99,
     "image": "https://images.pexels.com/photos/9595290/pexels-photo-9595290.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 7
+    "stock": 7,
+    "rating": 4.4,
+    "reviewCount": 110
   },
   {
     "id": 17,
@@ -163,7 +195,9 @@
     "category": "Gifts",
     "featured": false,
     "image": "https://images.pexels.com/photos/13975260/pexels-photo-13975260.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 9
+    "stock": 9,
+    "rating": 4.7,
+    "reviewCount": 76
   },
   {
     "id": 18,
@@ -172,7 +206,9 @@
     "category": "Electronics",
     "featured": false,
     "image": "https://images.pexels.com/photos/18254084/pexels-photo-18254084.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 8
+    "stock": 8,
+    "rating": 4.5,
+    "reviewCount": 234
   },
   {
     "id": 19,
@@ -182,7 +218,9 @@
     "featured": false,
     "originalPrice": 299,
     "image": "https://images.pexels.com/photos/19051060/pexels-photo-19051060.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 12
+    "stock": 12,
+    "rating": 4.1,
+    "reviewCount": 51
   },
   {
     "id": 20,
@@ -191,7 +229,9 @@
     "category": "Gifts",
     "featured": false,
     "image": "https://images.pexels.com/photos/4993235/pexels-photo-4993235.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 7
+    "stock": 7,
+    "rating": 4.8,
+    "reviewCount": 92
   },
   {
     "id": 21,
@@ -201,7 +241,9 @@
     "featured": false,
     "originalPrice": 39.99,
     "image": "https://images.pexels.com/photos/3123510/pexels-photo-3123510.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 10
+    "stock": 10,
+    "rating": 4.6,
+    "reviewCount": 184
   },
   {
     "id": 22,
@@ -211,7 +253,9 @@
     "featured": true,
     "image": "https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
     "stock": 6,
-    "badge": "New"
+    "badge": "New",
+    "rating": 4.9,
+    "reviewCount": 67
   },
   {
     "id": 23,
@@ -220,7 +264,9 @@
     "category": "Gifts",
     "featured": false,
     "image": "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 6
+    "stock": 6,
+    "rating": 4.4,
+    "reviewCount": 333
   },
   {
     "id": 24,
@@ -230,6 +276,8 @@
     "featured": true,
     "originalPrice": 89.99,
     "image": "https://images.pexels.com/photos/2935263/pexels-photo-2935263.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop",
-    "stock": 7
+    "stock": 7,
+    "rating": 4.7,
+    "reviewCount": 41
   }
 ]

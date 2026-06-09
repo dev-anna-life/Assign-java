@@ -6,6 +6,7 @@ import { useToast } from '../context/ToastContext.jsx';
 import TopBar from '../components/TopBar.jsx';
 import ProductGrid from '../components/ProductGrid.jsx';
 import ProductCard from '../components/ProductCard.jsx';
+import StarRating from '../components/StarRating.jsx';
 import SkeletonCard from '../components/SkeletonCard.jsx';
 import Footer from '../components/Footer.jsx';
 
@@ -229,6 +230,9 @@ export default function Store({ onCartClick }) {
               </div>
 
               <h2 className="text-xl font-bold text-gray-800 mb-2">{detailProduct.name}</h2>
+              <div className="mb-1">
+                <StarRating rating={detailProduct.rating} size="md" showCount reviewCount={detailProduct.reviewCount} />
+              </div>
               <div className="flex items-baseline gap-2 mb-4">
                 <p className="text-2xl font-bold text-gray-700">{detailProduct.priceFormatted}</p>
                 {detailProduct.originalPrice > 0 && (
@@ -280,6 +284,29 @@ export default function Store({ onCartClick }) {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Testimonials */}
+      {query === '' && activeCategory === 'All' && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-8">
+          <div className="flex items-center gap-2 mb-5">
+            <i className="fas fa-quote-right text-gray-400 text-sm"></i>
+            <h2 className="text-lg font-bold text-gray-800">What Our Customers Say</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { name: 'Sarah M.', text: 'Found the perfect anniversary gift. Fast shipping and the packaging was beautiful!', rating: 5 },
+              { name: 'James K.', text: 'GiftHaven made holiday shopping so easy. Great selection and fair prices.', rating: 5 },
+              { name: 'Emily R.', text: 'Customer service was amazing. Helped me pick out a gift and it was a hit!', rating: 5 },
+            ].map((t, i) => (
+              <div key={i} className="bg-white rounded-xl border border-gray-100/50 p-5 animate-fade-in" style={{ animationDelay: `${i * 100}ms`, animationFillMode: 'both' }}>
+                <div className="flex text-amber-400 text-xs mb-3">{'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}</div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-3">"{t.text}"</p>
+                <p className="text-xs font-semibold text-gray-700">{t.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Recently viewed */}
