@@ -90,6 +90,7 @@ export default function Admin() {
                     <span className="font-medium">{order.customer.name}</span> &middot; {order.customer.email}
                   </div>
                   <div className="text-xs text-gray-400 mb-2">{order.customer.address}</div>
+                  {order.coupon && <div className="text-xs text-green-600 mb-2">Coupon: {order.coupon.code} ({order.coupon.discount}% off)</div>}
                   <div className="flex flex-wrap gap-2">
                     {order.items.map((item, i) => (
                       <span key={i} className="text-xs bg-gray-100 text-gray-600 rounded-full px-2.5 py-1">

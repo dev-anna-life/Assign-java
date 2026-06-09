@@ -36,7 +36,7 @@ app.get('/api/orders', (_req, res) => {
 });
 
 app.post('/api/orders', (req, res) => {
-  const { items, customer } = req.body;
+  const { items, customer, coupon, total } = req.body;
   if (!items?.length || !customer?.name || !customer?.email || !customer?.address) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -44,7 +44,9 @@ app.post('/api/orders', (req, res) => {
     id: crypto.randomUUID(),
     items: items.map(i => ({ ...i, priceFormatted: `$${i.price}` })),
     customer,
-    total: items.reduce((sum, i) => sum + i.price * i.qty, 0),
+    coupon: coupon || null,
+    total: total ?? items.reduce((sum, i) => sum + i.price * i.qty, 0),
+    subtotal: items.reduce((sum, i) => sum + i.price * i.qty, 0),
     createdAt: new Date().toISOString(),
   };
   orders.push(order);

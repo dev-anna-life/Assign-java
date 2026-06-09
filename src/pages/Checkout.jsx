@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 
+const COUPONS = { GIFTHAVEN10: 10, SAVE20: 20, WELCOME5: 5 };
+
 export default function Checkout() {
   const { items, cartTotal, clearCart } = useCart();
   const navigate = useNavigate();
@@ -9,6 +11,25 @@ export default function Checkout() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(null);
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponError, setCouponError] = useState('');
+
+  const discount = appliedCoupon ? Math.round((cartTotal * appliedCoupon) / 100) : 0;
+  const finalTotal = Math.max(0, cartTotal - discount);
+
+  const applyCoupon = () => {
+    const code = couponCode.trim().toUpperCase();
+    if (!code) return;
+    if (COUPONS[code]) {
+      setAppliedCoupon(COUPONS[code]);
+      setCouponError('');
+      setCouponCode('');
+    } else {
+      setCouponError('Invalid coupon code');
+      setAppliedCoupon(null);
+    }
+  };
 
   const validate = () => {
     const errs = {};
@@ -34,7 +55,7 @@ export default function Checkout() {
       const res = await fetch('http://localhost:3001/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items, customer: form }),
+        body: JSON.stringify({ items, customer: form, coupon: appliedCoupon ? { code: Object.entries(COUPONS).find(([,v]) => v === appliedCoupon)[0], discount } : null, total: finalTotal }),
       });
       if (!res.ok) throw new Error('Order failed');
       const order = await res.json();
@@ -94,13 +115,32 @@ export default function Checkout() {
                 <textarea name="address" value={form.address} onChange={handleChange} rows={3} placeholder="123 Main St, City, State, ZIP" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-gray-400 transition-all bg-gray-50/30 resize-none" />
                 {errors.address && <p className="text-rose-500 text-xs mt-1.5"><i className="fas fa-exclamation-circle mr-1"></i>{errors.address}</p>}
               </div>
+              {/* Coupon */}
+              <div className="border-t border-gray-100 pt-4">
+                <label className="block text-sm font-medium text-gray-600 mb-2">Have a coupon?</label>
+                <div className="flex gap-2">
+                  <input
+                    value={couponCode}
+                    onChange={e => { setCouponCode(e.target.value); setCouponError(''); }}
+                    onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), applyCoupon())}
+                    placeholder="Enter code"
+                    className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400/50 bg-gray-50/50 uppercase"
+                  />
+                  <button type="button" onClick={applyCoupon} className="px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg cursor-pointer hover:bg-gray-700 transition-colors whitespace-nowrap">
+                    Apply
+                  </button>
+                </div>
+                {couponError && <p className="text-rose-500 text-xs mt-1.5">{couponError}</p>}
+                {appliedCoupon && <p className="text-green-600 text-xs mt-1.5"><i className="fas fa-check-circle mr-1"></i>{appliedCoupon}% off applied!</p>}
+              </div>
+
               {errors.submit && <p className="text-rose-500 text-sm bg-rose-50 rounded-lg px-4 py-2">{errors.submit}</p>}
               <button
                 type="submit"
                 disabled={submitting}
                 className="w-full py-3 bg-gradient-to-r from-gray-600 to-gray-800 text-white font-semibold rounded-lg cursor-pointer disabled:opacity-60 hover:from-gray-700 hover:to-gray-900 transition-all active:scale-[0.98]"
               >
-                {submitting ? <><i className="fas fa-spinner fa-spin mr-2"></i>Processing...</> : `Place Order — $${cartTotal.toFixed(2)}`}
+                {submitting ? <><i className="fas fa-spinner fa-spin mr-2"></i>Processing...</> : `Place Order — $${finalTotal.toFixed(2)}`}
               </button>
             </form>
           </div>
@@ -137,13 +177,19 @@ export default function Checkout() {
                     <span>Subtotal</span>
                     <span>${cartTotal.toFixed(2)}</span>
                   </div>
+                  {appliedCoupon > 0 && (
+                    <div className="flex justify-between text-sm text-green-600">
+                      <span>Discount ({appliedCoupon}% off)</span>
+                      <span>-${discount.toFixed(2)}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-sm text-gray-600">
                     <span>Shipping</span>
                     <span className="text-green-600">Free</span>
                   </div>
                   <div className="flex justify-between text-lg font-bold text-gray-800 pt-2 border-t border-gray-100">
                     <span>Total</span>
-                    <span className="text-gray-700">${cartTotal.toFixed(2)}</span>
+                    <span className="text-gray-700">${finalTotal.toFixed(2)}</span>
                   </div>
                 </div>
               </>

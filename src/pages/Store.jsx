@@ -6,6 +6,7 @@ import { useToast } from '../context/ToastContext.jsx';
 import TopBar from '../components/TopBar.jsx';
 import ProductGrid from '../components/ProductGrid.jsx';
 import ProductCard from '../components/ProductCard.jsx';
+import SkeletonCard from '../components/SkeletonCard.jsx';
 import Footer from '../components/Footer.jsx';
 
 const categories = ['All', 'Electronics', 'Jewelry', 'Fashion', 'Gifts'];
@@ -24,6 +25,23 @@ export default function Store({ onCartClick }) {
   const [detailProduct, setDetailProduct] = useState(null);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [recentlyViewed, setRecentlyViewed] = useState(() => {
+    try { const r = localStorage.getItem('recentlyViewed'); return r ? JSON.parse(r) : []; } catch { return []; }
+  });
+
+  const handleViewDetail = (product) => {
+    addRecentlyViewed(product);
+    setDetailProduct(product);
+  };
+
+  const addRecentlyViewed = (product) => {
+    setRecentlyViewed(prev => {
+      const filtered = prev.filter(p => p.id !== product.id);
+      const next = [product, ...filtered].slice(0, 8);
+      localStorage.setItem('recentlyViewed', JSON.stringify(next));
+      return next;
+    });
+  };
 
   useEffect(() => {
     fetch('http://localhost:3001/api/products')
@@ -65,7 +83,10 @@ export default function Store({ onCartClick }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <TopBar query={query} onSearch={setQuery} onCartClick={onCartClick} />
+      <TopBar query={query} onSearch={setQuery} onCartClick={onCartClick}
+        suggestions={query.trim() ? products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 6) : []}
+        onSuggestionClick={(p) => { setQuery(''); handleViewDetail(p); }}
+      />
 
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 text-white overflow-hidden">
@@ -139,16 +160,15 @@ export default function Store({ onCartClick }) {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
                 {featured.slice(0, 4).map((p, idx) => (
-                  <ProductCard key={p.id} product={p} index={idx} onViewDetail={setDetailProduct} />
+                  <ProductCard key={p.id} product={p} index={idx} onViewDetail={handleViewDetail} />
                 ))}
               </div>
             </section>
           )}
 
           {loading ? (
-            <div className="text-center py-20">
-              <i className="fas fa-spinner fa-spin text-3xl text-gray-300"></i>
-              <p className="text-gray-500 mt-3">Loading gifts...</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mt-6">
+              {Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)}
             </div>
           ) : filtered.length === 0 ? (
             <div className="text-center py-20">
@@ -164,7 +184,7 @@ export default function Store({ onCartClick }) {
                 <h2 className="text-lg font-bold text-gray-800">All Products</h2>
                 <span className="text-xs text-gray-400">{filtered.length} items</span>
               </div>
-              <ProductGrid products={visibleProducts} onViewDetail={setDetailProduct} />
+              <ProductGrid products={visibleProducts} onViewDetail={handleViewDetail} />
               {hasMore && (
                 <div className="text-center mt-8">
                   <button
@@ -244,7 +264,7 @@ export default function Store({ onCartClick }) {
                     {relatedProducts.map(rp => (
                       <div
                         key={rp.id}
-                        onClick={() => setDetailProduct(rp)}
+                        onClick={() => handleViewDetail(rp)}
                         className="bg-gray-50 rounded-xl p-3 cursor-pointer hover:bg-gray-100 transition-colors"
                       >
                         <div className="aspect-square bg-white rounded-lg flex items-center justify-center p-2 mb-2">
@@ -260,6 +280,32 @@ export default function Store({ onCartClick }) {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Recently viewed */}
+      {recentlyViewed.length > 0 && query === '' && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-4">
+          <div className="flex items-center gap-2 mb-4">
+            <i className="fas fa-clock-rotate text-gray-400 text-sm"></i>
+            <h2 className="text-lg font-bold text-gray-800">Recently Viewed</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+            {recentlyViewed.map((p, idx) => (
+              <div
+                key={p.id}
+                onClick={() => handleViewDetail(p)}
+                className="bg-white rounded-xl border border-gray-100/50 p-3 cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all animate-fade-in"
+                style={{ animationDelay: `${idx * 60}ms`, animationFillMode: 'both' }}
+              >
+                <div className="aspect-square bg-gray-50 rounded-lg flex items-center justify-center p-2 mb-2">
+                  <img src={p.image} alt={p.name} className="w-full h-full object-contain" />
+                </div>
+                <p className="text-xs font-medium text-gray-700 truncate">{p.name}</p>
+                <p className="text-xs font-bold text-gray-600">${p.price}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Scroll to top */}

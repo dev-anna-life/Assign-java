@@ -69,9 +69,6 @@ export default function Footer() {
         </div>
         <div className="border-t border-gray-100 pt-6 text-center">
           <p className="text-xs text-gray-400">&copy; 2025 GiftHaven. Designed by DevAnna. All rights reserved.</p>
-          <Link to="/admin" className="text-[10px] text-gray-300 hover:text-gray-500 transition-colors mt-2 inline-block">
-            <i className="fas fa-shield-alt mr-1"></i> Admin
-          </Link>
         </div>
       </div>
     </footer>

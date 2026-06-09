@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useWishlist } from '../context/WishlistContext.jsx';
 
-export default function TopBar({ query, onSearch, onCartClick }) {
+export default function TopBar({ query, onSearch, onCartClick, suggestions, onSuggestionClick }) {
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
+  const showSuggestions = query.trim().length > 0 && suggestions?.length > 0;
 
   return (
     <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200">
@@ -17,7 +18,7 @@ export default function TopBar({ query, onSearch, onCartClick }) {
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-5">
-          <div className="hidden sm:flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2 relative">
             <div className="relative">
               <i className="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
               <input
@@ -27,6 +28,25 @@ export default function TopBar({ query, onSearch, onCartClick }) {
                 placeholder="Search gifts..."
                 className="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm w-48 lg:w-64 focus:outline-none focus:ring-2 focus:ring-gray-400/50 focus:border-gray-400 transition-all bg-gray-50/50"
               />
+              {showSuggestions && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-50">
+                  {suggestions.slice(0, 6).map(p => (
+                    <button
+                      key={p.id}
+                      onClick={() => onSuggestionClick(p)}
+                      className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center gap-3 border-b border-gray-50 last:border-0"
+                    >
+                      <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center flex-shrink-0">
+                        <img src={p.image} alt="" className="w-6 h-6 object-contain" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="truncate font-medium">{p.name}</p>
+                        <p className="text-xs text-gray-400">{p.priceFormatted}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <button
