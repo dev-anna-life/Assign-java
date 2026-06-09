@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext.jsx';
+import { useWishlist } from '../context/WishlistContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
 
 export default function ProductCard({ product, index = 0, onViewDetail }) {
   const { addToCart } = useCart();
+  const { isWishlisted, toggleWishlist } = useWishlist();
   const { addToast } = useToast();
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -17,11 +19,20 @@ export default function ProductCard({ product, index = 0, onViewDetail }) {
   const catColor = catColors[product.category] || 'bg-gray-100 text-gray-700';
 
   const delay = Math.min((index % 8) * 100, 700);
+  const wished = isWishlisted(product.id);
+  const onSale = product.originalPrice > 0;
+  const discount = onSale ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
 
   const handleAdd = (e) => {
     e.stopPropagation();
     addToCart(product);
     addToast(`${product.name} added to cart`);
+  };
+
+  const handleWishlist = (e) => {
+    e.stopPropagation();
+    toggleWishlist(product);
+    addToast(wished ? 'Removed from wishlist' : 'Added to wishlist');
   };
 
   return (
@@ -52,13 +63,32 @@ export default function ProductCard({ product, index = 0, onViewDetail }) {
           onError={() => setImgError(true)}
           className={`w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
-        <span className={`absolute top-3 left-3 text-[10px] font-semibold px-2 py-1 rounded-full ${catColor}`}>
+
+        <button
+          onClick={handleWishlist}
+          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm cursor-pointer z-10"
+        >
+          <i className={`fas fa-heart text-sm transition-all ${wished ? 'text-rose-500 scale-110' : 'text-gray-400 hover:text-rose-400'}`}></i>
+        </button>
+
+        {discount > 0 && (
+          <span className="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+            -{discount}%
+          </span>
+        )}
+
+        <span className={`absolute bottom-3 left-3 text-[10px] font-semibold px-2 py-1 rounded-full ${catColor}`}>
           {product.category}
         </span>
       </div>
       <div className="p-4 flex flex-col flex-1">
         <h3 className="text-sm font-semibold text-gray-800 mb-1 leading-snug line-clamp-2 group-hover:text-gray-900 transition-colors">{product.name}</h3>
-        <p className="text-lg font-bold text-gray-700 mb-3 mt-auto">{product.priceFormatted}</p>
+        <div className="flex items-baseline gap-2 mb-3 mt-auto">
+          <p className="text-lg font-bold text-gray-700">{product.priceFormatted}</p>
+          {onSale && (
+            <p className="text-xs text-gray-400 line-through">{product.originalPriceFormatted}</p>
+          )}
+        </div>
         <button
           onClick={handleAdd}
           className="w-full py-2.5 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm font-semibold rounded-lg cursor-pointer hover:from-gray-700 hover:to-gray-900 active:scale-[0.95] transition-all duration-200 flex items-center justify-center gap-2 group/btn"

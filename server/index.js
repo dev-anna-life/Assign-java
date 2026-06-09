@@ -17,11 +17,16 @@ app.get('/api/products', (_req, res) => {
   const list = products.map(p => ({
     ...p,
     priceFormatted: `$${p.price}`,
+    originalPriceFormatted: p.originalPrice ? `$${p.originalPrice}` : undefined,
   }));
   res.json(list);
 });
 
 const orders = [];
+
+app.get('/api/orders', (_req, res) => {
+  res.json(orders);
+});
 
 app.post('/api/orders', (req, res) => {
   const { items, customer } = req.body;

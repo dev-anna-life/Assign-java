@@ -1,17 +1,20 @@
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
+import { useWishlist } from '../context/WishlistContext.jsx';
 
 export default function TopBar({ query, onSearch, onCartClick }) {
   const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
 
   return (
     <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <a href="/" className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <div className="w-9 h-9 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
             <i className="fas fa-gift text-white text-sm"></i>
           </div>
           <span className="text-xl font-bold text-gray-800 tracking-tight">GiftHaven</span>
-        </a>
+        </Link>
 
         <div className="flex items-center gap-3 sm:gap-5">
           <div className="hidden sm:flex items-center gap-2">
@@ -32,6 +35,19 @@ export default function TopBar({ query, onSearch, onCartClick }) {
           >
             <i className="fas fa-search text-sm"></i>
           </button>
+
+          <Link
+            to="/wishlist"
+            className="relative flex items-center justify-center w-9 h-9 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+          >
+            <i className="fas fa-heart"></i>
+            {wishlistCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 shadow-sm">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+
           <button
             onClick={onCartClick}
             className="relative flex items-center justify-center w-9 h-9 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
