@@ -5,6 +5,7 @@ import { useWishlist } from '../context/WishlistContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
 import TopBar from '../components/TopBar.jsx';
 import ProductGrid from '../components/ProductGrid.jsx';
+import ProductCard from '../components/ProductCard.jsx';
 import Footer from '../components/Footer.jsx';
 
 const categories = ['All', 'Electronics', 'Jewelry', 'Fashion', 'Gifts'];
